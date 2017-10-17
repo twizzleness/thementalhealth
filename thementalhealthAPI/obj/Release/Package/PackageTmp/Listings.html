@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="Scripts/jquery-1.10.2.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            var ulListing = $('#ulListings');
+
+            $('#btn').click(function() {
+                $.ajax({
+                    type: 'GET',
+                    url: 'http://thementalhealthapi20171011105925.azurewebsites.net/api/listings',
+                    dataType: 'jsonp',
+                    headers: {
+                        "Access-Control-Allow-Origin": "*",
+                        "Access-Control-Allow-Headers": "origin, content-type, accept"
+                    },
+                    success: function(data) {
+                        ulListing.empty();
+                        $.each(data,
+                            function(index, val) {
+                                var description = val.Description;
+                                ulListing.append('<li>' + description + '</li>');
+                            });
+                    },
+                    error: function (data) {
+                        alert(JSON.stringify(data));
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+<input id="btn" type="button" value="Get Listings"/>
+<ul id="ulListings"></ul>
+</body>
+</html>

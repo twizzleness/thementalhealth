@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="Scripts/jquery-1.10.2.js"></script>
+    <style>
+        tr:hover {
+            background-color: #d3d3d3;
+        }
+    </style>
+    
+    <script type="text/javascript">
+        $(document).ready(function() {
+            var divListingTable = $('#listingTable');
+
+            //$('#btn').click(function() {
+                $.ajax({
+                    type: 'GET',
+                    url: 'http://thementalhealthapi20171011105925.azurewebsites.net/api/listings',
+                    dataType: 'jsonp',
+                    headers: {
+                        "Access-Control-Allow-Origin": "*",
+                        "Access-Control-Allow-Headers": "origin, content-type, accept"
+                    },
+                    success: function(data) {
+                        var table = $('<table>');
+                        $.each(data,
+                            function (index, val) {
+
+                                var image = $('<img />', {
+                                    src: 'img/' + val.Image,
+                                    width: 250,
+                                    height: 150
+                                });
+
+                                console.log(image);
+                                var htmlString = '<tr><td id="image' + index + '"></td><td>' + val.Description + '</td><td>'+ val.Link +'</td></tr>';
+                                console.log(htmlString);
+                                table.append(htmlString);
+                                if (index !== 0) {
+                                    $("#image" + index).append(image);
+                                }
+                                divListingTable.append(table);
+                            });
+                    },
+                    error: function (data) {
+                        alert(JSON.stringify(data));
+                    }
+                });
+            });
+       // });
+    </script>
+</head>
+<body>
+<input id="btn" type="button" value="Get Listings"/>
+<div id="listingTable"></div>
+</body>
+</html>

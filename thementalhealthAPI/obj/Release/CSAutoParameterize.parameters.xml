@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="thementalhealthAPIContext-Web.config Connection String" description="thementalhealthAPIContext Connection String used in web.config by the application to access the database." defaultValue="Data Source=thementalhealth.database.windows.net;Initial Catalog=thementalhealth;Integrated Security=False;User ID=thementalhealthAdmin;Password=Fall2017!;Connect Timeout=30;Encrypt=True;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\Tyler\\Documents\\C\#\\thementalhealth\\thementalhealthAPI\\thementalhealthAPI\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='thementalhealthAPIContext']/@connectionString" />
+  </parameter>
+</parameters>
